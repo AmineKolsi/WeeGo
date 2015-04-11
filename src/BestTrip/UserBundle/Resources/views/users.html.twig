@@ -1,0 +1,53 @@
+{# empty Twig template #}
+
+{# empty Twig template #}
+{% extends "BestTripUserBundle::Layoutadmin.html.twig" %}
+{% block titre_page %}Les abonnés{% endblock %}
+{% block titre_rubrique %}Les abonnés{% endblock %}
+{% block titre_rubrique2 %}Les abonnés{% endblock %}
+
+ {% block main_content  %}
+
+<div class="container">
+    
+        
+     <div class="col-md-9">    
+            
+            <table   class="users" align="center" border="1px" style="border-color: #75c5c3; border-width:thin; border-style:solid; margin-bottom: 20px;">  
+                <tr style="color: white; background: #6cb2b0;">
+                    <td>Nom</td>  
+                    <td>Prenom</td>
+                    <td>Pseudo</td> 
+                    <td>Email </td> 
+                    <td>Pays</td> 
+                    <td>image</td>                   
+                    <td>supprimer</td>
+                </tr>
+                {% for user in users %}
+                <tr style=" background-color:#FFF; ">
+                    <td  style="color: #75c5c3; background-color:#f8f5e2;">{{ user.username }}</td>
+                    <td style="color: #75c5c3; background-color:#f8f5e2;">{{ user.prenom }}</td>
+                      
+                    <td style="color: #75c5c3; background-color:#f8f5e2;">{{ user.pseudo }}</td>
+                     
+                    <td style="color: #75c5c3; background-color:#f8f5e2;">{{ user.email }}</td>
+                      
+                    <td style="color: #75c5c3; background-color:#f8f5e2;">{{ user.pays }}</td>
+                     
+                    
+                    <td style="color: #75c5c3; background-color:#f8f5e2;"> <img width="62" src="{{ asset('uploads/documents/' ~user.image) }}" alt="" /> </td>
+                      
+                    <td style="color: #75c5c3; background-color:#f8f5e2;"><center><a href="{{path('supprimer_user',{username:user.username})}}"><i class="fa fa-trash-o"></i></a></center></td>
+                     
+                     
+                    
+                {% endfor %}
+                
+            </table>
+        
+     </div>     
+       
+    
+</div>
+ {% endblock %}
+ 

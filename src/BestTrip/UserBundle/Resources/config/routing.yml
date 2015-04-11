@@ -1,0 +1,22 @@
+best_trip_user_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BestTripUserBundle:Default:index }
+
+
+wee_go_users:
+       path:     /backoffice/users
+       defaults: { _controller: BestTripUserBundle:Default:users }
+supprimer_user:
+    path:     /supprimer/{username}
+    defaults: { _controller: BestTripUserBundle:Default:supprimer }
+backoffice_homepage:
+     path:     /backoffice
+     defaults: { _controller: BestTripUserBundle:Default:home }
+crm_homepage:
+     path:     /profile
+     defaults: { _controller: BestTripUserBundle:Default:profile }
+homepage:
+     path:     /homepage
+     defaults: { _controller: BestTripUserBundle:Default:homepage }
+     
+ 

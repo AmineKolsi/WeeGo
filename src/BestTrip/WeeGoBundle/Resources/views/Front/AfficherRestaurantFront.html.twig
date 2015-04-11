@@ -1,0 +1,218 @@
+{% extends 'BestTripWeeGoBundle::layout.html.twig' %}
+{% block include_head %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">
+   
+   
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&language=fr">
+    </script>
+    <script type="text/javascript">
+        var geocoder;
+        var map;
+   // initialisation de la carte Google Map de départ
+        function initialiserCarte() {
+            geocoder = new google.maps.Geocoder();
+            // Ici j'ai mis la latitude et longitude du vieux Port de Marseille pour centrer la carte de départ
+            var latlng = new google.maps.LatLng(43.295309, 5.374457);
+            var mapOptions = {
+                zoom: 14,
+                center: latlng,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            }
+            // map-canvas est le conteneur HTML de la carte Google Map
+            map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        }
+
+        function TrouverAdresse() {
+            // Récupération de l'adresse tapée dans le formulaire
+            var adresse = document.getElementById('adresse').value;
+            geocoder.geocode({'address': adresse}, function (results, status) {
+                if (status == google.maps.GeocoderStatus.OK) {
+                    map.setCenter(results[0].geometry.location);
+                    // Récupération des coordonnées GPS du lieu tapé dans le formulaire
+                    var strposition = results[0].geometry.location + "";
+                    strposition = strposition.replace('(', '');
+                    strposition = strposition.replace(')', '');
+                    // Affichage des coordonnées dans le <span>
+                    document.getElementById('text_latlng').innerHTML = 'Coordonnées : ' + strposition;
+                    // Création du marqueur du lieu (épingle)
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: results[0].geometry.location
+                    });
+                } else {
+                    alert('Adresse introuvable: ' + status);
+                }
+            });
+        }
+   // Lancement de la construction de la carte google map
+        google.maps.event.addDomListener(window, 'load', initialiserCarte);
+
+        google.maps.event.addDomListener(window, 'load', TrouverAdresse);
+
+    </script>
+
+{% endblock %}
+{% block include_foot %}   
+    
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    
+    
+    <script src="{{ asset('js/jquery-simple-pagination-plugin.js') }}"></script>
+    <script>
+        (function ($) {
+
+            $('#first-container').simplePagination();
+
+            $('#second-container').simplePagination({
+                items_per_page: 5,
+                number_of_visible_page_numbers: 10
+            });
+
+            $('#third-container').simplePagination({
+                items_per_page: 10
+            });
+
+            $('#fourth-container').simplePagination({
+                first_content: '&lt;&lt;',
+                previous_content: '<',
+                next_content: '>',
+                last_content: '>>'
+            });
+
+            $('#fifth-container').simplePagination({
+                use_page_count: true
+            });
+
+            $('#sixth-container').simplePagination({
+                items_per_page: 11,
+                items_per_page_content: {
+                    'Six': 6,
+                    'Eleven': 11,
+                    'Seventeen': 17,
+                    'Thirty-three': 33,
+                    'Sixty-seven': 67
+                }
+            });
+
+        })(jQuery);
+    </script>
+    
+{% endblock %} 
+{% block titre_page %}Lieux{% endblock %}
+{% block titre_rubrique %}Détails Restaurant{% endblock %}    
+{% block main_content  %}
+
+
+    
+    <div class="container">
+        {% for l in lieu %}
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="row" >
+
+                        <div class="col-md-4">
+
+                            <img alt="" src="{{ asset('uploads/documents/'~l.path~'') }}" style="width: 100%; margin-bottom: 5%; border-radius: 10px;">
+                        </div>     
+                        <div class="col-md-3">
+
+                            <h5>Informations </h5>
+                            <p>Specialité: {{l.specialite}}</p>
+                            <p>Reservation: {{l.reservation}}</p>
+                            <p>Repos:{{l.jRepos}}</p>
+                        </div>
+
+                        <div class="col-md-5">
+
+
+
+
+
+                            <h5>{{ l.nom }} </h5>
+                            <p>{{ l.nom }} est un   situé dans {{l.adresse}} pour plus d'informations vous pouvez consulter le site web {{l.siteweb}} ou le numero du telephone {{l.numtel}} </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4" >
+                    <input type="hidden" id="adresse" value="{{l.adresse}},{{l.idVille}}"/>
+
+
+                    <h5 style="margin-bottom: 10px;">Map: </h5>
+                    <div id="map-canvas" style="width:100% ;height:200px;"></div>
+                </div>
+            </div>
+        {% endfor %}
+
+        <div class="row">
+            <div class="col-md-10">
+                <h3 id="nombreRec">{{ recommandations|length }} recommandation(s) </h3>
+                <div id="third-container">
+                    <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                    </div>
+                    <table>
+                        <tbody class="rec">
+
+                            {% for r in recommandations %}
+                                <tr>
+                                    <td>
+                                        <div class="comment-box">
+                                            <img alt="" src="{{ asset('images/avatar3.png') }}">
+                                            <div class="comment-content">
+
+
+
+
+
+                                                <h6 style="display: inline;">{{ r.utilisateur.pseudo }}<span>{{ r.dateRecommandation|date('d/m/Y') }}</span></h6>
+                                                <img src="{{ asset('images/stars/'~r.note~'.jpg') }}" style="border: 0; display: inline; float: none;"/>
+                                                <p>{{ r.texte }}</p>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                    </div>
+                    <div class="navigation-rapide">
+                        <div class="simple-pagination-page-x-of-x"></div>
+                        <div class="simple-pagination-showing-x-of-x"></div>
+                        <div>
+                            Afficher <select class="simple-pagination-items-per-page"></select> recommandations par page.
+                        </div>
+                        <div>
+                            Aller directement à la page <select class="simple-pagination-select-specific-page"></select>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div id="map_canvas" style="width:100%; ">
+            </div>   
+        </div>
+    </div>
+
+
+
+{% endblock %}

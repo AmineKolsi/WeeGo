@@ -1,0 +1,76 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block include_head %}<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">{% endblock %}
+{% block include_foot %}<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>{% endblock %} 
+
+
+{% block titre_page %}Experience{% endblock %}
+{% block titre_rubrique %}Affichage Experience{% endblock %}  
+{% block main_content  %}
+<div class="container">
+ {% for key, e in experience %}
+    <div class="row">
+        <div id="owl-demo" class="owl-carousel owl-theme">
+            <div class="item news-item">
+                <div class="inner-item">
+                    <img src="data:image/png;base64,{{ images[key] }}" />
+                    <div class="hover-item">
+                        <ul>
+                            <li><a class="autor" href="#"><i class="fa fa-user"></i> {{ e.titre }}</a></li>
+                            <li><a class="comment-numb" href="#"><i class="fa fa-comments"></i> {{e.idlieu}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <a href="#?w=500" rel="popup_name" class="poplight"><input type="button" class="bouton"  value="Recommander!"/></a>
+            </div> 
+            <div class="item news-item">
+                <div class="inner-item">
+                    <h5>{{ e.titre }} </h5>
+                    <p>{{e.datePublication|date('Y-m-d')}}</p>
+                </div>
+            </div> 
+
+            <div class="item news-item">
+                <div>
+                    <h5>Impression:</h5>
+                    <p>{{e.impression}}</p>
+                </div>
+                <div>
+                    <h5>Date Debut:</h5>
+                    <p>{{e.dateDebut|date('Y-m-d')}}</p>
+                </div>
+                <div>
+                    <h5>Date Fin:</h5>
+                    <p>{{e.dateFin|date('Y-m-d')}}</p>
+                </div>
+            </div> 
+             <div class="item news-item">
+                <div class="inner-item">
+                    <div>
+                    <h5>Article </h5>
+                    <p><h4>{{ e.texte }}</h4></p>
+                    </div>
+                </div>
+            </div> 
+            <div class="item news-item">
+                <div class="inner-item">
+                    <div
+                        class="fb-like"
+                        data-send="true"
+                        data-width="450"
+                        data-show-faces="true">
+                    </div>
+                </div>
+                <div class="inner-item">
+                    <h5> Supprimer </h5>
+                    <a class="like" href="{{ path('supprimer2Experience',{id:e.id})}}"><i class="fa fa-trash-o"></i></a>
+                    <h5> Modifier </h5>
+                    <a class="like" href="{{ path('modifierExperience',{id:e.id})}}"><i class="fa  fa-edit"></i></a>
+                </div>
+            </div> 
+        </div>
+    </div>
+{% endfor %}  
+</div>
+{% endblock %}
+

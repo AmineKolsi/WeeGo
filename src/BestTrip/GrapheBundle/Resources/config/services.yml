@@ -1,0 +1,4 @@
+services:
+#    best_trip_graphe.example:
+#        class: BestTrip\GrapheBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

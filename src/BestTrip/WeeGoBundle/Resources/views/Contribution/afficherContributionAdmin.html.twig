@@ -1,0 +1,28 @@
+{# empty Twig template #}
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block titre_page %}Toutes les contributions{% endblock %}
+{% block titre_rubrique %}Toutes les contributions{% endblock %}
+{% block titre_rubrique2 %}Toutes les contributions{% endblock %}
+ {% block main_content %}
+     <ul class="pricing-table basic" >
+        <li class="title" >       
+            <table   align="center" border="1px" style="border-color: #75c5c3; border-width:thin; border-style:solid;">  
+                <tr style="color: white;">
+                    <td>Utilisateur</td>  
+                    <td>Titre</td>
+                    <td>Texte</td> 
+                    <td>Supprimer</td>
+                </tr>
+                {% for c in contribution %}
+                <tr style=" background-color:#FFF; ">
+                    <td>{{c.idUtilisateur.pseudo }}</td>
+                    <td style="color: #75c5c3;">{{c.titre}}</td>
+                    <td>{{c.texte}}</td>   
+                    <td><a href="{{path('supprimer_contribution',{id:c.id})}}"><span class="image-content"><i class="fa   fa-trash-o"></i></span></a></td>
+                </tr>    
+                {% endfor %}
+            </table>
+        </li>
+    </ul>
+ {% endblock %}
+ 

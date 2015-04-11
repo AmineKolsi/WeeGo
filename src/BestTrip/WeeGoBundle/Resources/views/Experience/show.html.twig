@@ -1,0 +1,117 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block include_foot %}
+<script src="{{ asset('js/jquery-simple-pagination-plugin.js') }}"></script>
+<script>
+    (function($) {
+
+        $('#first-container').simplePagination();
+
+        $('#second-container').simplePagination({
+            items_per_page: 5,
+            number_of_visible_page_numbers: 10
+        });
+
+        $('#third-container').simplePagination({
+            items_per_page: 10
+        });
+
+        $('#fourth-container').simplePagination({
+            first_content: '&lt;&lt;',
+            previous_content: '<',
+            next_content: '>',
+            last_content: '>>'
+        });
+
+        $('#fifth-container').simplePagination({
+            use_page_count: true
+        });
+
+        $('#sixth-container').simplePagination({
+            items_per_page: 11,
+            items_per_page_content: {
+                'Six': 6,
+                'Eleven': 11,
+                'Seventeen': 17,
+                'Thirty-three': 33,
+                'Sixty-seven': 67
+            }
+        });
+
+    })(jQuery);
+</script>
+{% endblock %}
+{% block titre_page %}Experience{% endblock %}
+{% block titre_rubrique %}Afficher Experience{% endblock %}
+{% block main_content  %}
+    
+<div id="carousel-example-generic4" class="carousel slide" data-ride="carousel">
+    <div class="item-active" id="third-container">
+        <div class="my-navigation">
+            <ul class="pagination-list">
+                <li><div class="simple-pagination-first"></div></li>
+                <li><div class="simple-pagination-previous"></div></li>
+                <li><div class="simple-pagination-page-numbers"></div></li>
+                <li><div class="simple-pagination-next"></div></li>
+                <li><div class="simple-pagination-last"></div></li>
+            </ul>
+        </div>
+        <table>
+            <tbody>
+                
+                   {% for key, e in experience %}
+                <tr class="col-md-3">
+                    <td>
+                        <div class="item news-item">
+                            <div class="inner-item">
+                                  <img src="data:image/png;base64,{{ images[key] }}" />
+                                <div class="hover-item">
+                                    <ul>
+                                        <li><a class="autor" href="#"><i class="fa fa-user"></i> {{e.idlieu}}</a></li>
+                                        <li><a class="date" href="#"><i class="fa fa-clock-o"></i>{{e.datePublication|date('Y-m-d')}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <h5>{{ e.titre }} </h5>
+                            <p> {{ e.texte |slice(0,20) ~ '...' }}</p>
+                            <a class="read-more" href="{{ path('afExperience',{id:e.id})}}" >Plus d'informations <i class="fa fa-arrow-right"></i></a>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="my-navigation">
+            <ul class="pagination-list">
+                <li><div class="simple-pagination-first"></div></li>
+                <li><div class="simple-pagination-previous"></div></li>
+                <li><div class="simple-pagination-page-numbers"></div></li>
+                <li><div class="simple-pagination-next"></div></li>
+                <li><div class="simple-pagination-last"></div></li>
+            </ul>
+        </div>
+        
+        <div class="navigation-rapide">
+            <div class="simple-pagination-page-x-of-x"></div>
+            <div class="simple-pagination-showing-x-of-x"></div>
+            <div>
+                Afficher <select class="simple-pagination-items-per-page"></select> recommandations par page.
+            </div>
+            <div>
+                Aller directement à la page <select class="simple-pagination-select-specific-page"></select>.
+            </div>
+        </div>
+    </div>
+    </div>
+{% block sidebar %}
+        <div class="sidebar-widgets">
+            <div class="search-widget widget">
+                <form method="GET">
+                    <input type="search" id="rech" name="rech" placeholder="Search here..."/>
+                    <button type="submit"  onclick="submitForm()">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+{% endblock %}
+{% endblock %}

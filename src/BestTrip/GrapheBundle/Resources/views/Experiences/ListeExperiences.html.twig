@@ -1,0 +1,31 @@
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block include_head %}
+    
+  
+
+{% endblock %}
+{% block main_content %}
+    <div class="container">
+        <div class="row">
+            <h4 style="margin: 15px;">Saisissez l'année de votre recherche...</h4>
+        </div>
+        <div class="row">
+            <form method = "POST" action="{{ path('grapheChartHistogramme') }}" target="_blank" class="formulaire" >    
+
+                <div class="col-md-1">
+                    <label>Année:</label>
+                </div>
+                <div class="col-md-3">
+                    <input type="number" name="annee" placeholder="Année de recherche"/>
+                </div>
+                <div class="col-md-4">
+                    <input type="submit" value="Rechercher" style="margin-top: 0; float: left;">
+                </div>
+
+
+
+            </form>
+        </div>
+            
+    </div>
+{% endblock %}

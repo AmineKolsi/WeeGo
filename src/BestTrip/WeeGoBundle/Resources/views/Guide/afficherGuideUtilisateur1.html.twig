@@ -1,0 +1,53 @@
+{# empty Twig template #}
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block titre_page %}Les guides{% endblock %}
+{% block titre_rubrique %}Les guides{% endblock %}
+{% block titre_rubrique2 %}Les guides{% endblock %}
+{% block main_content %}
+   
+    <div class="col-md-10">
+        
+            {% for g in guide%}
+                <div class="col-md-6 ">
+                    <div class="item news-item">
+                        <div class="inner-item">
+                            <a href="{{path('afficher_guide_detail',{id:g.idG})}}"><img alt="" src="../upload/{{ g.image }}" ></a>
+                            <div class="hover-item">
+                                <ul>             
+                                    <li><a class="autor" href="#"><i class="fa fa-user"></i>{{ g.idAdministrateur }}</a></li>
+                                    <li><a class="date" href="#"><i class="fa fa-clock-o"></i> {{g.dateModification|date('Y-m-d')}}</a></li>   
+                                    <li><a class="comment-numb" href="#"><i class="fa fa-comments"></i> {% set cmp = loop.index0 %}{{ guides[cmp]|default(0) }} commentaire(s)</a></li>
+
+                                </ul>
+                            </div>
+                        </div>
+                        <h5>{{g.titre}}</h5>
+                        <a class="read-more" href="{{path('afficher_guide_detail',{id:g.idG})}}">Détail <i class="fa fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+       
+    </div>
+    <div class="col-md-2">
+        
+        <div class="sidebar-widgets">
+            <div class="search-widget widget">
+                <input type="search" placeholder="Recherche..." id="titre" />
+                <button type="button" onclick="submitForm();">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+        {{facebook_login_button ({'autologoutlink': true})}}
+        <div
+            class="fb-like"
+            data-send="true"
+            data-width="450"
+            data-show-faces="true">
+        </div>
+        
+    </div>
+
+{% endblock %}
+
+

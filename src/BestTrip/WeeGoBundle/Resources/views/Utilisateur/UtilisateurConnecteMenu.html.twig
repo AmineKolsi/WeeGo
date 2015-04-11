@@ -1,0 +1,24 @@
+
+{% block sidebar %}
+<div class="col-md-12 shop-sidebar" style="padding: 0px;">
+				
+ 
+<div class="well" style="padding: 10px;">
+    <ul class="nav nav-list" >
+        <li>
+            <a href="{{ path('fos_user_profile_show') }}">Mes informations</a>
+        </li>
+        <li>
+            <a href="{{ path('fos_user_profile_edit') }}">Editer mes informations</a>
+        </li>
+        <li>
+            <a href="{{ path('fos_user_change_password') }}">Changer mon mot de passe</a>
+        </li>
+        
+        <li>
+            <a href="{{ path('fos_user_security_logout') }}">Déconnexion</a>
+        </li>
+    </ul>
+</div>
+                                    </div>
+{% endblock %}

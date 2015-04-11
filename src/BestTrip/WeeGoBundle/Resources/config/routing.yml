@@ -1,0 +1,186 @@
+home:
+    path:     /home 
+    defaults: { _controller: BestTripWeeGoBundle:Default:acceuil }
+    
+best_trip_wee_go_afficher:
+    path:     /afficher
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:afficher }
+best_trip_wee_go_infoLieu:
+    path:     /infoLieu/{id}/{statut}
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:infoLieu }
+
+best_trip_wee_go_recherche:
+    path:     /recherche/{nom}
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:recherche }
+    options:
+              expose: true
+best_trip_wee_go_ville:
+    path:     /ville/{nompays}
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:ville }
+    options:
+              expose: true
+best_trip_wee_go_chercherLieu:
+    path: /chercherLieu
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:chercherLieu }
+    
+best_trip_wee_go_pays:
+    path:     /pays
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:pays }
+    
+
+ajoutRecommandation:
+    path: /ajoutRecommandation/{idU}/{note}/{texte}/{idL}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:ajout }
+
+newRecommandation:
+    path: /newRecommandation/{idL}/{idU}/{note}/{texte}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:ajout }
+    
+mesRecommandations:
+    path: /mesRecommandations/{idU}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:mesRecommandations }
+    
+supprimerRecommandation:
+    path: /supprimerRecommandations/{id}/{idU}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:supprimer }
+  
+best_trip_wee_go_ajoutHotel:
+    path:     /ajoutHotel
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:ajoutHotel }
+best_trip_wee_go_ajoutRestaurant:
+    path:     /ajoutRestaurant
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:ajoutRestaurant }
+best_trip_wee_go_afficherLA:
+    path:     /afficherLA
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:afficherLA }
+best_trip_wee_go_supprimerLieu:
+    path:     /supprimerLieu/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:supprimerLieu }
+best_trip_wee_go_modifier:
+    path:     /modifier/{id}/{statut} 
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:modifier }
+ajouterExperience:
+    path:     /ajouterExperience
+    defaults: { _controller: BestTripWeeGoBundle:Experience:ajouter } 
+    
+afficherExperience:
+    path:     /afficherExperience
+    defaults: { _controller: BestTripWeeGoBundle:Experience:afficher } 
+showExperience:
+    path:     /showExperience
+    defaults: { _controller: BestTripWeeGoBundle:Experience:show }
+supprimerExperience:
+    path:     /supprimerExperience/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:supprimer }
+supprimer2Experience:
+    path:     /supprimerExperience/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:supprimer2 }
+afExperience:
+    path:     /afExperience/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:af }
+mesExperience:
+    path:     /mesExperience/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Experience:mesexperience }
+    
+modifierExperience:
+    path:     /modifierExperience/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:modifier }
+    
+affichermesExperience:
+    path:     /affichermesExperience/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:affichermesExperience }
+
+afficher_guide:
+    path: /afficherGuide
+    defaults: { _controller: BestTripWeeGoBundle:Guide:afficherGuide }
+afficher_guide_utilisateurA:
+    path: /afficherGuideUtilisateurA
+    defaults: { _controller: BestTripWeeGoBundle:Guide:afficherGuideUtilisateur1}
+afficher_guide_detail:
+    path: /afficherGuideDetail/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Guide:afficherGuideDetail }    
+ajouter_guide:
+    path: /ajouterGuide
+    defaults: { _controller: BestTripWeeGoBundle:Guide:ajouterGuide }
+modifier_guide:
+    path: /modifierGuide/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Guide:modifierGuide }
+supprimer_guide:
+    path: /supprimerGuide/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Guide:supprimerGuide }
+rechercher_guide:
+    path: /afficherGuideUtilisateurA/{titre}
+    defaults: { _controller: BestTripWeeGoBundle:Guide:rechercherGuide }
+    options:
+        expose: true
+
+afficher_contribution:
+    path: /afficherContribution
+    defaults: { _controller: BestTripWeeGoBundle:Contribution:afficherContribution }
+ajouter_contribution:
+    path: /ajouterContribution/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Contribution:ajouterContribution }
+    methods:  [POST]
+supprimer_contribution:
+    path: /supprimerContribution/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Contribution:supprimerContribution }
+
+newRecommandationExperience:
+    path: /newRecommandationExperience/{idE}/{idU}/{note}/{texte}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationExperience:ajout }
+
+info_lieu_admin:
+    path:     /infoLieuAdmin/{id}/{statut}
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:infoLieuAdmin }
+    
+supprimerRecommandationAdmin:
+    path: /supprimerRecommandationsAdmin/{id}/{idL}/{statut}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:supprimerAdmin }
+    
+afExperienceAdmin:
+    path:     /afExperienceAdmin/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:afAdmin }
+    
+supprimerRecExpAdmin:
+    path: /supprimerRecExpAdmin/{id}/{idE}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationExperience:supprimerRecExpAdmin }
+    
+mesRecommandationsExp:
+    path: /mesRecommandationsExp/{idU}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationExperience:mesRecommandations }
+    
+supprimerRecommandationExp:
+    path: /supprimerRecExp/{id}/{idU}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationExperience:supprimerRecExp }
+    
+aVote:
+    path: /aVote/{idU}/{idL}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationLieu:aVote }  
+    
+aVoteExp:
+    path: /aVoteExp/{idU}/{idE}
+    defaults: { _controller: BestTripWeeGoBundle:RecommandationExperience:aVote }  
+    
+showExperienceFront:
+    path:     /showExperienceFront
+    defaults: { _controller: BestTripWeeGoBundle:Experience:showFront }
+    
+best_trip_wee_go_afficher_front:
+    path:     /afficherLieuFront
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:afficherLieuFront }
+    
+afficher_guide_utilisateurA_front:
+    path: /afficherGuideUtilisateurAFront
+    defaults: { _controller: BestTripWeeGoBundle:Guide:afficherGuideUtilisateur1Front}
+    
+afExperienceFront:
+    path:     /afExperienceFront/{id} 
+    defaults: { _controller: BestTripWeeGoBundle:Experience:afFront }
+    
+best_trip_wee_go_infoLieu_front:
+    path:     /infoLieuFront/{id}/{statut}
+    defaults: { _controller: BestTripWeeGoBundle:Lieu:infoLieuFront }
+    
+afficher_guide_detail_front:
+    path: /afficherGuideDetailFront/{id}
+    defaults: { _controller: BestTripWeeGoBundle:Guide:afficherGuideDetailFront } 

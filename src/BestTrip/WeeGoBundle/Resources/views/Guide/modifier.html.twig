@@ -1,0 +1,87 @@
+{# empty Twig template #}
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block titre_page %}Modifier un guide{% endblock %}
+{% block titre_rubrique %}Modifier un guide{% endblock %}
+{% block titre_rubrique2 %}Modifier un guide{% endblock %}
+{% block main_content %}
+<form method="Post" action="{{path('modifier_guide',{id:guide.idG})}}" {{ form_enctype(form) }} class="formulaire"> 
+    <div class="container">
+           <div class="row">
+               <div class="col-md-8">
+	       {{ form_label(form.titre) }}
+               
+               {{ form_widget(form.titre) }}
+               </div>
+               <div class="col-md-8">
+                   {{ form_errors(form.titre) }}
+               </div>
+           </div>
+            <div class="row" style="display:none;">
+                
+               <div class="col-md-8">
+                   {{ form_label(form.dateCreation) }}
+                   {{ form_widget(form.dateCreation) }}
+               </div>
+               <div class="col-md-8">
+                  {{ form_errors(form.dateCreation) }}
+               </div>
+	         
+                                                    
+           </div>
+           <div class="row" style="display: none;">
+               
+               <div class="col-md-8">
+                   {{ form_label(form.dateModification) }}
+                   {{ form_widget(form.dateModification) }}
+               </div>
+               <div class="col-md-8">
+                  {{ form_errors(form.dateModification) }}
+               </div>
+       
+          </div>
+            <div class="row">
+             
+               
+               <div class="col-md-8">
+                   {{ form_label(form.texte) }}
+                   {{ form_widget(form.texte) }}
+               </div>
+               <div class="col-md-8">
+                  {{ form_errors(form.texte) }}
+               </div>
+          </div>
+          <div class="row">
+              
+              
+              <div class="col-md-8">
+                  <label> Administrateur</label>
+                   {{ form_widget(form.idAdministrateur) }}
+               </div>
+               <div class="col-md-8">
+                  {{ form_errors(form.idAdministrateur) }}
+               </div>
+           </div>
+            <div class="row">
+               
+              
+              <div class="col-md-8">
+                  <label> Pays</label>
+                   {{ form_widget(form.idPays) }}
+               </div>
+               <div class="col-md-8">
+                  {{ form_errors(form.idPays) }}
+               </div>
+           </div>
+          <div class="row">
+              <div class="col-md-8">
+                  {{ form_rest(form,{id:guide.image}) }}
+              </div>
+              
+          </div>
+        <div class="row">
+            <input type="submit" value="Modifier" />
+        </div>
+    </div>
+                 
+</form>
+{% endblock %}

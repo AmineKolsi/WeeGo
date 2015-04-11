@@ -1,0 +1,31 @@
+best_trip_user:
+    resource: "@BestTripUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+best_trip_mail:
+    resource: "@BestTripMailBundle/Resources/config/routing.yml"
+    prefix:   /
+
+best_trip_graphe:
+    resource: "@BestTripGrapheBundle/Resources/config/routing.yml"
+    prefix:   /Graphe
+
+best_trip_wee_go:
+    resource: "@BestTripWeeGoBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: @AppBundle/Controller/
+    type:     annotation
+    
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml" 
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+_security_login:
+    pattern: /loginfb
+
+_security_check:
+    pattern: /loginfb_check
+fos_facebook_channel:
+    resource: "@FOSFacebookBundle/Resources/config/routing.xml"

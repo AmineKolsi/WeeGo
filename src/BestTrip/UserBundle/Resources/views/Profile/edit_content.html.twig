@@ -1,0 +1,100 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit formulaire ">
+    
+     <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_label(form.username, "Nom d'utilisateur:  ") }}
+                {{ form_widget(form.username) }}
+            </div>
+            <div class="col-md-2">
+                {{ form_errors(form.username) }}
+            </div>    
+
+          
+        
+            <div class="col-md-4">
+                 {{ form_label(form.prenom, "Prenom:  ") }}
+                  {{ form_widget(form.prenom) }}
+            </div>
+            <div class="col-md-2">
+                {{ form_errors(form.prenom) }}
+            </div>    
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-4">
+                {{ form_label(form.pseudo, "Pseudo:  ") }}
+    {{ form_widget(form.pseudo) }} 
+            </div>
+            <div class="col-md-2">
+{{ form_errors(form.pseudo) }}            </div>    
+
+        
+            <div class="col-md-4">
+                {{ form_label(form.email, "Email ") }}
+      {{ form_widget(form.email) }}
+            </div>
+            <div class="col-md-2">
+{{ form_errors(form.email)}}           </div>    
+
+        </div>
+
+        <div class="row">
+           
+        
+            <div class="col-md-4" style=" width: 33%;">
+                {{ form_label(form.date_naissance, "Date de naissance:  ") }}
+    {{ form_widget(form.date_naissance) }}
+            </div>
+            <div class="col-md-2">
+{{ form_errors(form.date_naissance) }}     </div>   
+            
+             <div class="col-md-4">
+                {{ form_label(form.current_password, "Mot de passe actuelle ") }} 
+               {{ form_widget(form.current_password, { 'attr' : { 'class' : 'text-input' } })  }} 
+            </div>
+            <div class="col-md-2">
+                  {{ form_errors(form.current_password)}}          </div>    
+
+        </div>
+        <div class="row" style="display: none;">
+            <div class="col-md-3">
+                {{ form_label(form.date_inscrit, "Date d'inscription:  ") }}
+    {{ form_widget(form.date_inscrit) }}
+            </div>
+            <div class="col-md-6">
+{{ form_errors(form.date_inscrit) }}     </div>    
+
+        </div>
+
+        
+
+        <div class="row" >
+            <div class="col-md-4">
+                {{ form_label(form.pays, "Pays ") }} </label>
+    {{ form_widget(form.pays) }} </br>
+            </div>
+            <div class="col-md-2">
+{{ form_errors(form.pays) }}    </div>    
+        
+          
+            <div class="col-md-4" >
+                {{ form_rest(form) }}
+                
+        </div>   
+        </div>
+<div class="row">
+            <div class="col-md-6">
+    <div>
+        <input type="submit" value="{{ 'profile.edit.submit'|trans }}" />
+    </div>
+            </div>
+</div>
+       </div>
+</form>
+           

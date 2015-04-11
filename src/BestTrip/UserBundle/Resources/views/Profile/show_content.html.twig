@@ -1,0 +1,38 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<h2>Mon profile</h2>
+<div class="fos_user_user_show">
+
+
+   
+        <div class="row">
+            <div class="col-md-3">
+                <div class="staff-post">
+                    <div class="staff-post-content">
+                        
+                        <span>{{ user.username }}{{ user.prenom }}</span>
+                    </div>
+                    <div class="staff-post-gal">
+                        
+                        <img src="{{ asset('uploads/documents/' ~user.image) }}" alt="" />  
+                    </div>
+                </div>
+            </div>
+
+           <div class="col-md-9"> 
+            <p>{{ 'profile.show.username'|trans }}: {{ user.username }}</p>
+            <p>{{ 'Prenom   '|trans }}: {{ user.prenom }}</p>
+            <p>{{ 'Pseudo   '|trans }}: {{ user.pseudo }}</p>
+            <p>{{ 'email   '|trans }}: {{ user.email }}</p>
+            <p>{{ 'Pays      '|trans }}: {{ user.pays }}</p>
+            <p>{{ 'Date de naissance     '|trans }}:{{user.dateNaissance|date('Y-m-d')}}
+
+
+</div>
+
+
+        </div>
+
+  </div>
+      

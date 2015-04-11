@@ -1,0 +1,110 @@
+{# empty Twig template #}
+
+
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block include_head %}<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">{% endblock %}
+{% block include_foot %}  
+<script>
+$('document').ready(function(){ 
+    
+        
+        
+
+ $('#file').hide();
+   
+   
+$('.c').click(function(){
+  $('#file').show();
+  $('.a').hide();
+   $('.c').hide();
+ });
+  
+ 
+ 
+ 
+
+});
+
+
+ </script>
+<script type="text/javascript" src="{{ asset('js/jquery-2.1.3.min.js') }}"></script>
+   <script  src="{{ asset('js/main.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>{% endblock %} 
+{% block titre_page %}Lieux{% endblock %}
+{% block titre_rubrique %}Modifier Restaurant{% endblock %}
+{% block main_content  %}
+
+
+
+    <form method="POST" action="{{path('best_trip_wee_go_modifier',{id:hotel.id,statut:hotel.statut}) }}" class="formulaire" {{ form_enctype(form) }}>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    {{form_label(form.nom)}}   
+                    {{ form_widget (form.nom) }}	<br>
+
+                </div>
+                <div class="col-md-6">
+                    {{form_label(form.siteweb)}}  
+                    {{ form_widget (form.siteweb) }}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{form_label(form.adresse)}}  
+                    {{ form_widget (form.adresse) }}
+                </div>
+                <div class="col-md-6">
+                    {{form_label(form.service)}}     
+                    {{ form_widget (form.service) }}
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {{form_label(form.nbrEtoiles)}}                 
+                    {{ form_widget (form.nbrEtoiles) }} 
+                </div>
+                <div class="col-md-6">
+                    {{form_label(form.emplacement)}}	
+                    {{ form_widget (form.emplacement) }} 
+                </div>
+
+            </div>
+                <div class="row">
+                <div class="col-md-6">
+                    {{form_label(form.numtel)}}                  
+                    {{ form_widget (form.numtel) }}
+                </div>
+                <div class="col-md-6">
+                    {{form_label(form.file)}}
+                 <img  id="a" class="a"  alt="" src="{{ asset('uploads/documents/'~hotel.path~'') }}" style="width: 30%; margin-bottom: 5%; border-radius: 10px;">
+         {{form_widget(form.file)}}
+                             <img  id="c" class="c"  alt="" src="{{ asset('uploads/documents/file.png') }}" style="width: 5%; margin-bottom: 5%; border-radius: 10px;">
+                </div>
+            </div>
+                    <div class="row">
+                     <div class="col-md-6">
+                            <label> Pays:</label>
+                          <select class="nompays" id="pays" >
+         <option>---Pays---</option>
+        {% for l in pays %}
+        <option>{{l.nomPays}}</option>
+     {% endfor %}
+       
+    </select>
+                     </div>
+                     <div class="col-md-6">
+                         <label> Ville:</label>
+                       <select class="ville" id="ville"  name="ville" >
+              <option id="nom">----Ville---</option>
+    </select>
+                     </div>
+                    <input type="submit" value="Modifier">
+                </div>
+        </div>
+
+
+    </form>
+{% endblock %}                           

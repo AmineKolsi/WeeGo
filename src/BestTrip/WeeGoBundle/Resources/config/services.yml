@@ -1,0 +1,4 @@
+services:
+#    best_trip_wee_go.example:
+#        class: BestTrip\WeeGoBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,381 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block include_head %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">
+    <link rel="stylesheet" href="{{ asset('css/jRating.jquery.css') }}" type="text/css" />
+    <link rel="stylesheet" href="{{ asset('css/popup.css') }}" type="text/css" />
+    <script src="{{ asset('js/note.js') }}" type="text/javascript"></script>
+
+{% endblock %}
+{% block include_foot %}
+    <script>
+        $(function () {
+
+            console.log("fonction test");
+
+
+
+
+
+            var idE = document.getElementById("idE").value;
+            var idU = document.getElementById("idU").value;
+
+            $.ajax({
+                url: 'http://localhost/WeeGo/web/app_dev.php/aVoteExp/' + idU + '/' + idE,
+                type: 'POST',
+                success: function (reponse) {
+
+                    if (reponse == "false") {
+                        $('#placeBoutonRec').empty();
+                        document.getElementById('placeBoutonRec').innerHTML = '<p style="color:#e0304a">Vous avez déjà recommandé cet endroit!</p>';
+
+                    }
+
+                }
+            });
+
+
+
+
+
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('a.poplight[href^=#]').click(function () {
+                var popID = $(this).attr('rel'); //Trouver la pop-up correspondante
+                var popURL = $(this).attr('href'); //Retrouver la largeur dans le href
+
+                //Récupérer les variables depuis le lien
+                var query = popURL.split('?');
+                var dim = query[1].split('&amp;');
+                var popWidth = dim[0].split('=')[1]; //La première valeur du lien
+
+                //Faire apparaitre la pop-up et ajouter le bouton de fermeture
+                $('#' + popID).fadeIn().css({
+                    'width': Number(popWidth)
+                })
+                        .prepend('<a href="#" class="close"><img src="{{ asset('images/close_pop.png') }}" class="btn_close" title="Fermer" alt="Fermer" /></a>');
+
+                //Récupération du margin, qui permettra de centrer la fenêtre - on ajuste de 80px en conformité avec le CSS
+                var popMargTop = ($('#' + popID).height() + 80) / 2;
+                var popMargLeft = ($('#' + popID).width() + 80) / 2;
+
+                //On affecte le margin
+                $('#' + popID).css({
+                    'margin-top': -popMargTop,
+                    'margin-left': -popMargLeft
+                });
+
+                //Effet fade-in du fond opaque
+                $('body').append('<div id="fade"></div>'); //Ajout du fond opaque noir
+                //Apparition du fond - .css({'filter' : 'alpha(opacity=80)'}) pour corriger les bogues de IE
+                $('#fade').css({'filter': 'alpha(opacity=80)'}).fadeIn();
+
+                return false;
+            });
+
+//Fermeture de la pop-up et du fond
+            $('a.close, #fade').live('click', function () { //Au clic sur le bouton ou sur le calque...
+                $('#fade , .popup_block').fadeOut(function () {
+                    $('#fade, a.close').remove();  //...ils disparaissent ensemble
+                });
+                return false;
+            });
+        });
+    </script>
+    <script type="text/javascript" src="{{ asset('js/jRating.jquery.js') }}"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('.basic').jRating();
+
+
+            $('.exemple3').jRating({
+                step: true,
+                length: 5,
+                canRateAgain: true,
+                nbRates: 999
+            });
+
+
+
+
+
+
+        });
+    </script>
+    <script src="{{ asset('js/jquery-simple-pagination-plugin.js') }}"></script>
+    <script>
+        (function ($) {
+
+            $('#first-container').simplePagination();
+
+            $('#second-container').simplePagination({
+                items_per_page: 5,
+                number_of_visible_page_numbers: 10
+            });
+
+            $('#third-container').simplePagination({
+                items_per_page: 10
+            });
+
+            $('#fourth-container').simplePagination({
+                first_content: '&lt;&lt;',
+                previous_content: '<',
+                next_content: '>',
+                last_content: '>>'
+            });
+
+            $('#fifth-container').simplePagination({
+                use_page_count: true
+            });
+
+            $('#sixth-container').simplePagination({
+                items_per_page: 11,
+                items_per_page_content: {
+                    'Six': 6,
+                    'Eleven': 11,
+                    'Seventeen': 17,
+                    'Thirty-three': 33,
+                    'Sixty-seven': 67
+                }
+            });
+
+        })(jQuery);
+    </script>
+    <script>
+        $(function () {
+
+            console.log("jQuery est prêt !");
+
+            $('#espaceMessage').hide();
+
+
+            $("#valider_recommandation").click(function () {
+                var idE = document.getElementById("idE").value;
+                var idU = document.getElementById("idU").value;
+                var note = document.getElementById("zone1").value;
+                var texte = document.getElementById("texteR").value;
+
+                if (note == "" || texte == "") {
+                    document.getElementById('espaceMessage').innerHTML = '<p style="color: white">Vous devez remplir tous les champs</p>'
+                    $('#espaceMessage').show('speed');
+                }
+                else {
+
+                    $.ajax({
+                        url: 'http://localhost/WeeGo/web/app_dev.php/newRecommandationExperience/' + idE + '/' + idU + '/' + note + '/' + texte,
+                        type: 'POST',
+                        success: function (reponse) {
+                            $('.rec').empty();
+
+                            $('#fade , .popup_block').fadeOut(function () {
+                                $('#fade, a.close').remove();  //...ils disparaissent ensemble
+                            });
+                            //console.log(reponse);
+                            var i = 0;
+                            $.each(reponse.user, function () {
+                                $('.rec').append($('<tr><td><div class="comment-box"><img alt="" src="/WeeGo/web/images/avatar3.png"/><div class="comment-content"><h6 style="display: inline;">' + reponse.user[0] + '<span>' + reponse.dateP[i] + '</span></h6><img src="/WeeGo/web/images/stars/' + reponse.note[i] + '.jpg" style="border: 0; display: inline; float: none;"><p>' + reponse.rec[i] + '</p></div></div></td></tr>'));
+                                i++;
+                                //$('.rec').val(reponse.user);
+                                //$('.rec').append($('</td></tr>'));
+                            });
+                            document.getElementById('nombreRec').innerHTML = i + ' recommandation(s)';
+                            //$('#nombreRec').innerHtml((i+1)+' recommandation(s)');
+
+                            $('#third-container').simplePagination({
+                                items_per_page: 10
+                            });
+                            $('#placeBoutonRec').empty();
+                            document.getElementById('placeBoutonRec').innerHTML = '<p style="color:#e0304a">Vous avez déjà recommandé cet endroit!</p>';
+                            document.getElementById("idE").value = '';
+                            document.getElementById("idU").value = '';
+                            document.getElementById("zone1").value = '';
+                            document.getElementById("texteR").value = '';
+
+                        }
+                    });
+                }
+            });
+
+
+
+
+
+        });
+    </script>
+{% endblock %} 
+
+
+{% block titre_page %}Experience{% endblock %}
+{% block titre_rubrique %}Affichage Experience{% endblock %}  
+{% block main_content  %}
+    {% for e in experience %}
+
+        <div id="popup_name" class="popup_block">
+            <form method="post">
+                <div class="container" style="background: white; padding: 5px 5px;">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h2>Recommander: {{ e.titre }}</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <span class="exemple">
+                                <div class="exemple3" id="note1" data-id="1" style="margin: 5px;"></div>
+                                <input type = "hidden" name="note" id="zone1" name="noteR"/>
+                                <input type="hidden" name="idE" id="idE" value="{{ e.id }}"/>
+
+                                <input type="hidden" name="idU" id="idU" value="{{ app.user.id }}"/>
+                            </span>
+
+                        </div>
+                        <div class="col-md-8" style="padding: 5px;">
+                            <p>(Vote obligatoire)</p>
+                        </div>
+                    </div>
+                    <div class="row" id="espaceMessage" style="background: #e0304a;  width: 98%; margin-left: 5px; padding: 5px; margin-top: 5px; margin-bottom: 5px;">
+
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <textarea id="texteR"  name="texteR" placeholder="Votre recommandation..."></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <input type="button" id="valider_recommandation" class="bouton" style="float: right;"value="Recommander"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    {% endfor %}
+    <div class="container">
+        {% for key, e in experience %}
+            <div class="row">
+                <div id="owl-demo" class="owl-carousel owl-theme">
+                    <div class="item news-item">
+                        <div class="inner-item">
+                            <img src="data:image/png;base64,{{ images[key] }}" />
+                            <div class="hover-item">
+                                <ul>
+                                    <li><a class="autor" href="#"><i class="fa fa-user"></i> {{ e.titre }}</a></li>
+                                    <li><a class="comment-numb" href="#"><i class="fa fa-comments"></i> {{e.idlieu.nom}}</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <span id="placeBoutonRec"><a href="#?w=500" rel="popup_name" class="poplight"><input type="button" class="bouton"  value="Recommander!"/></a></span>
+                    </div> 
+                    <div class="item news-item">
+                        <div class="inner-item">
+                            <h5>{{ e.titre }} </h5>
+                            <p>{{e.datePublication|date('Y-m-d')}}</p>
+                            <p><h4>{{ e.texte }}</h4></p>
+
+                        </div>
+                    </div> 
+
+                    <div class="item news-item">
+                        <div>
+                            <h5>Impression:</h5>
+                            <p>{{e.impression}}</p>
+                        </div>
+                        <div>
+                            <h5>Date Debut:</h5>
+                            <p>{{e.dateDebut|date('Y-m-d')}}</p>
+                        </div>
+                        <div>
+                            <h5>Date Fin:</h5>
+                            <p>{{e.dateFin|date('Y-m-d')}}</p>
+                        </div>
+                        
+                    </div> 
+                    <div class="item news-item">
+                        <div class="inner-item">
+                            <div>
+                                <h5>Article </h5>
+                                <p><h5>{{ e.texte }}</h5></p>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="item news-item">
+                        <div class="inner-item">
+                            <div
+                                class="fb-like"
+                                data-send="true"
+                                data-width="450"
+                                data-show-faces="true">
+                            </div>
+                        </div>
+                    </div> 
+
+                </div>
+            </div>
+        {% endfor %}  
+        <div class="row">
+            <div class="col-md-10">
+                <h3 id="nombreRec">{{ recommandations|length }} recommandation(s) </h3>
+                <div id="third-container">
+                    <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                    </div>
+                    <table>
+                        <tbody class="rec">
+
+                            {% for r in recommandations %}
+                                <tr>
+                                    <td>
+                                        <div class="comment-box">
+                                            <img alt="" src="{{ asset('images/avatar3.png') }}">
+                                            <div class="comment-content">
+
+
+
+
+
+                                                <h6 style="display: inline;">{{ r.utilisateur.pseudo }}<span>{{ r.dateRecommandation|date('d/m/Y') }}</span></h6>
+                                                <img src="{{ asset('images/stars/'~r.note~'.jpg') }}" style="border: 0; display: inline; float: none;"/>
+                                                <p>{{ r.texte }}</p>
+
+
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+                    <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                    </div>
+                    <div class="navigation-rapide">
+                        <div class="simple-pagination-page-x-of-x"></div>
+                        <div class="simple-pagination-showing-x-of-x"></div>
+                        <div>
+                            Afficher <select class="simple-pagination-items-per-page"></select> recommandations par page.
+                        </div>
+                        <div>
+                            Aller directement à la page <select class="simple-pagination-select-specific-page"></select>.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,4 @@
+services:
+#    best_trip_user.example:
+#        class: BestTrip\UserBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

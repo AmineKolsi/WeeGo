@@ -1,0 +1,66 @@
+{# empty Twig template #}
+
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+
+
+{% block main_content %}
+
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-3">
+
+                <div class="contact-information">
+                    <h3>Info contact </h3>
+                    <ul class="contact-information-list">
+                        <li><span><i class="fa fa-home"></i>17, rue Othman Ibn Affan, Menzah 8, Ariana, Tunisie</span></li>
+                        <li><span><i class="fa fa-phone"></i>97 71 50 80</span></li>
+                        <li><a href="#"><i class="fa fa-envelope"></i>weeGo003@gmail.com</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="col-md-4">
+
+
+            
+
+
+            </div>
+
+            <div class="col-md-5 ">
+
+
+                <p>{{form_errors(form)}}</p>
+
+                <form role="form"  id="contact-form" class="contact-work-form2 formulaire " method="POST" 
+                      action='{{path('wee_go_mail_sendpage_front_office') }}' {{form_enctype(form)}}>    
+
+                    {{form_widget(form)}}
+
+                    <input type="submit"/>
+                </form>
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock  %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

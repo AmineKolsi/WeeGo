@@ -1,0 +1,41 @@
+
+ {% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block titre_page %}Newsletter{% endblock %}
+{% block titre_rubrique %}Newsletter{% endblock %}
+{% block titre_rubrique2 %}Newsletter{% endblock %}
+{% block main_content %}
+
+
+<div class="container">
+
+    <div class="row">
+
+        
+
+        <div class="col-md-5 ">
+
+
+            <p>{{form_errors(form)}}</p>
+<form role="form"  id="contact-form" class="contact-work-form2 formulaire " method="POST" 
+                  action='{{path('my_app_mail_sendpage')}}' {{form_enctype(form)}}>    
+
+           
+        {{form_widget(form)}}
+
+        <input type="submit"/>
+
+    </form>
+     
+
+                
+           
+            </body> 
+
+        </div>
+    </div>
+
+</div>
+
+
+{% endblock  %}
+

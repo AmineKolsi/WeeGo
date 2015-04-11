@@ -1,0 +1,56 @@
+{# empty Twig template #}
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block titre_page %}Nouvelle contribution{% endblock %}
+{% block titre_rubrique %}Nouvelle contribution{% endblock %}
+{% block titre_rubrique2 %}Nouvelle contribution{% endblock %}
+{% block main_content %}
+<form method="Post" class="formulaire"> 
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <label>Utilisateur</label> 
+                   {{ form_widget(form.idUtilisateur) }}
+             </div>
+             <div class="col-md-8">
+                 {{ form_errors(form.idUtilisateur) }}                  
+             </div>
+         </div>
+          <div class="row">
+            <div class="col-md-8">
+                <label>Guide pays</label> 
+                   {{ form_widget(form.idGuide) }}
+             </div>
+             <div class="col-md-8">
+                 {{ form_errors(form.idGuide) }}                  
+             </div>
+         </div>
+         <div class="row">                
+            <div class="col-md-8">      
+	           {{ form_label(form.titre) }} 
+                   {{ form_widget(form.titre) }}
+             </div>
+             <div class="col-md-8">
+                   {{ form_errors(form.titre) }}           
+              </div>                                                   
+           </div>
+           <div class="row">               
+              <div class="col-md-8">
+          
+                   {{ form_label(form.texte) }} 
+                    {{ form_widget(form.texte) }}
+               </div>
+               <div class="col-md-8">
+                   {{ form_errors(form.texte) }}
+                  
+           </div>
+           </div>
+          <div class="row">
+              <div class="col-md-8">
+                    {{ form_rest(form) }}
+               </div>
+          </div>
+        <div class="row">
+            <input type="submit" value="Valider" />
+        </div>
+    </div>
+{% endblock %}

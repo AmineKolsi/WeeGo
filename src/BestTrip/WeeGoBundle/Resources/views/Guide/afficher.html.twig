@@ -1,0 +1,46 @@
+{# empty Twig template #}
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+{% block titre_page %}Tous les guides{% endblock %}
+{% block titre_rubrique %}Tous les guides{% endblock %}
+{% block titre_rubrique2 %}Tous les guides{% endblock %}
+ {% block main_content %}
+     <ul class="pricing-table basic" >
+        <li class="title" >       
+            <table   align="center" border="1px" style="border-color: #75c5c3; border-width:thin; border-style:solid;">  
+                <tr style="color: white;">
+                    <td>Titre</td>  
+                    <td>Pays</td>
+                    <td>Date de création</td> 
+                    <td>Date de modification </td> 
+                    <td>Texte</td> 
+                    <td style="display:none">image</td>
+                    <td>Modifier </td> 
+                    <td>Supprimer</td>
+                </tr>
+                {% for g in guide %}
+                <tr style=" background-color:#FFF; ">
+                    <td>{{g.titre}}</td>
+                    <td style="color: #75c5c3;">{{g.idPays.nomPays}}</td>
+                    <td>{{g.dateCreation|date('Y-m-d')}}</td>   
+                    <td style="color: #75c5c3;">{{g.dateModification|date('Y-m-d')}}</td>
+                   <td>{% set tmp = g.texte  %} 
+                        {{ tmp|length > 200 ? tmp|slice(0, 100)~ '...': tmp }}
+                        <a href="" onclick="javascript:visibilite({{ g.idG }}); return false;" 
+                        style="border-radius: 0px; background:#FFF;color:#75c5c3; vertical-align:middle;font-size:100%;padding:0;margin:0;">Lire la suite</a>
+                      
+			<div  id="{{ g.idG }}" style="display:none;">
+                        {{ g.texte|length > 400 ? g.texte|slice(100, 4000): g.texte  }}
+                        </div>    
+			
+                    </td>  
+                     <td style="display:none"> <img alt="" src="../upload/{{ g.image }}" ></td>
+                    <td style="color: #75c5c3;"><a href="{{path('modifier_guide',{id:g.idG})}}"><span class="image-content"><i class="fa  fa-refresh"></i></span></a></td>
+                    <td><a href="{{path('supprimer_guide',{id:g.idG})}}"><span class="image-content"><i class="fa   fa-trash-o"></i></span></a></td>
+                </tr>    
+                {% endfor %}
+            </table>
+        </li>
+    </ul>
+ {% endblock %}
+
+

@@ -1,0 +1,30 @@
+{% extends 'BestTripUserBundle::Layoutadmin.html.twig' %}
+
+      {% block titre_page %}Experience{% endblock %}
+      {% block titre_rubrique %}Les expériences{% endblock %}
+      {% block titre_rubrique2 %}Les expériences{% endblock %}
+
+
+{% block main_content  %}
+<div id="carousel-example-generic4" class="carousel slide" data-ride="carousel">
+
+    <div class="item-active">
+{% for e in experience %}
+        <div class="col-md-3">
+            <div class="product-post">
+                <div class="product-post-gal">
+                    <img alt="" src="{{ asset('upload/trip.jpg')}}">
+                    <span class="price">  {{e.idlieu}}</span>
+                </div>
+                <div class="product-post-content">
+                    <h5> {{ e.titre }}</h5>
+                    <ul class="product-list">
+                       <li><a class="like" href="{{ path('supprimerExperience',{id:e.id})}}"><i class="fa fa-trash-o"></i></a></li>
+                       <li><a class="like" href="{{ path('afExperienceAdmin',{id:e.id})}}"><i class="fa  fa-edit"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+ {% endfor %}  
+    </div>
+{% endblock %}

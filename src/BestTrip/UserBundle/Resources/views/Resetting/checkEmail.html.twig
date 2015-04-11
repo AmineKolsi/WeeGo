@@ -1,0 +1,12 @@
+{% extends 'BestTripWeeGoBundle::layout.html.twig' %}
+
+
+		
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block main_content %}
+<p>
+{{ 'resetting.check_email'|trans({'%email%': email}) }}
+</p>
+{% endblock %}
+

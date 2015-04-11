@@ -1,0 +1,18 @@
+best_trip_graphe_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BestTripGrapheBundle:Default:index }
+
+grapheChartLine:
+    path:     /chartLine
+    defaults: { _controller: BestTripGrapheBundle:Graphe:chartLine }
+    
+grapheChartHistogramme:
+    path:     /chartHistogramme
+    defaults: { _controller: BestTripGrapheBundle:Graphe:chartHistogramme }
+    
+rechercheExp:
+    path:     /rechercheExp
+    defaults: { _controller: BestTripGrapheBundle:Graphe:recherche }
+lpv:
+    path:     /lpv
+    defaults: { _controller: BestTripGrapheBundle:Graphe:lieuplusvisite }

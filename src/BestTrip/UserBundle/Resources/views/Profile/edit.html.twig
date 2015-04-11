@@ -1,0 +1,27 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+
+{% block main_content %}
+<h4>Modifier mon compte</h4>
+
+<div class="container">
+                    
+                    <div class="row">
+
+                        <div class="col-md-9">
+                        
+                            
+                                 {% include "FOSUserBundle:Profile:edit_content.html.twig" %} 
+                        </div>
+                          <div class="col-md-3">                        
+                        <div class="col-md-12 sidebar" style="padding: 0;">
+                            
+                           {% include "BestTripWeeGoBundle:Utilisateur:UtilisateurConnecteMenu.html.twig" %}
+                        </div>
+                    </div>
+
+                </div>
+ 
+
+</div>
+
+{% endblock  %}

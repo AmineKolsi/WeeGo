@@ -1,0 +1,18 @@
+# This file is auto-generated during the composer install
+parameters:
+    database_driver: pdo_mysql
+    database_host: 127.0.0.1
+    database_port: null
+    database_name: besttrip
+    database_user: root
+    database_password: null
+    mailer_transport: gmail
+    mailer_host: smtp.gmail.com
+    mailer_user: weego003@gmail.com
+    mailer_password: chourouk003
+    locale: fr
+    secret: ThisTokenIsNotSoSecretChangeIt
+    api_facebook_id:      379916045521179
+    api_facebook_secret:  555be4d8b0deab7e38c78b30e12d65e1
+    api_facebook_name:    http://apps.facebook.com/WeeGo/ 
+    api_facebook_server:  http://localhost:80/

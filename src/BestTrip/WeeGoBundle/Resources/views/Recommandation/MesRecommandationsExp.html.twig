@@ -1,0 +1,135 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block include_foot %}
+    <script src="{{ asset('js/jquery-simple-pagination-plugin.js') }}"></script>
+    <script>
+        (function ($) {
+
+            $('#first-container').simplePagination();
+
+            $('#second-container').simplePagination({
+                items_per_page: 5,
+                number_of_visible_page_numbers: 10
+            });
+
+            $('#third-container').simplePagination({
+                items_per_page: 10
+            });
+
+            $('#fourth-container').simplePagination({
+                first_content: '&lt;&lt;',
+                previous_content: '<',
+                next_content: '>',
+                last_content: '>>'
+            });
+
+            $('#fifth-container').simplePagination({
+                use_page_count: true
+            });
+
+            $('#sixth-container').simplePagination({
+                items_per_page: 11,
+                items_per_page_content: {
+                    'Six': 6,
+                    'Eleven': 11,
+                    'Seventeen': 17,
+                    'Thirty-three': 33,
+                    'Sixty-seven': 67
+                }
+            });
+
+        })(jQuery);
+    </script>
+    {% endblock %}
+{% block titre_rubrique %}Mes recommandations sur les expériences{% endblock %}
+{% block titre_rubrique2 %}Mes recommandations sur les expériences{% endblock %}
+{% block main_content %}
+
+
+    <div class="item news-item">
+        <div class="container">
+            <div id="third-container">
+                <div class="row">
+                <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                </div>
+                </div>
+                <div class="row">
+            <table>
+                <tbody>
+            {% for r in recommandations %}
+                <tr><td style="width: 700px;">
+                <div class="row">
+                    <div class="col-md-3 inner-item">
+                        <img alt="" src="{{ asset('upload/photo1.jpg') }}">
+                        <div class="hover-item">
+                            <ul>
+                                
+                                <li><a class="date" href="#"><i class="fa fa-clock-o"></i>{{ r.dateRecommandation|date('d/m/Y')}}</a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <a href="{{ path('afExperience',{id:r.idExperience.id})}}"><h5>{{ r.idExperience.titre }}</h5></a>
+                        <img src="{{ asset('images/stars/'~r.note~'.jpg') }}" style="border: 0; display: inline; float: none;"/>
+                        <p>{{ r.texte }}</p>
+                        <a class="read-more" href="{{ path('supprimerRecommandationExp',{id:r.id,idU:r.utilisateur.id}) }}" style="border: #e0304a solid 1px; color: #e0304a;">Supprimer<i class="fa fa-trash-o"></i></a>
+                    </div>
+
+                </div>
+                    </td></tr>
+            {% endfor %}
+            
+            </tbody>
+            </table>
+                </div>
+            <div class="row" style="margin-top: 20px;">
+                     <div class="my-navigation">
+                        <ul class="pagination-list">
+                            <li><div class="simple-pagination-first"></div></li>
+                            <li><div class="simple-pagination-previous"></div></li>
+                            <li><div class="simple-pagination-page-numbers"></div></li>
+                            <li><div class="simple-pagination-next"></div></li>
+                            <li><div class="simple-pagination-last"></div></li>
+                        </ul>
+                    </div>
+                    <div class="navigation-rapide">
+                        <div class="simple-pagination-page-x-of-x"></div>
+                        <div class="simple-pagination-showing-x-of-x"></div>
+                        <div>
+                            Afficher <select class="simple-pagination-items-per-page"></select> recommandations par page.
+                        </div>
+                        <div>
+                            Aller directement à la page <select class="simple-pagination-select-specific-page"></select>.
+                        </div>
+                    </div>
+            </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <ul class="pagination-list">
+        <li><a class="active" href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">5</a></li>
+    </ul>
+
+
+{% endblock %}

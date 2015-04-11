@@ -1,0 +1,45 @@
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+{% block include_head %}<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">{% endblock %}
+{% block include_foot %}         <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>{% endblock %} 
+
+{% block titre_page %}Lieux{% endblock %}
+{% block titre_rubrique %}Liste Des Lieux{% endblock %}  
+{% block main_content  %}
+
+
+
+
+
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        {% for l in lieu %}
+            <div class="item news-item">
+
+                <div class="inner-item">
+
+                    <img alt="" src="{{ asset('uploads/documents/'~l.path~'') }}">
+                    <div class="hover-item">
+                        <ul>
+                            <li><a class="autor" href="#"><i class="fa fa-user"></i>{{l.nom}}</a></li>
+                            <li><a class="date" href="#"><i class="fa fa-clock-o"></i> {{l.statut}} </a></li>
+                            <li><a class="comment-numb" href="#"><i class="fa fa-comments"></i> {{l.idVille}}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <h5>{{ l.nom }} </h5>
+                <p>{{ l.nom }} est un {{ l.statut }}  situé dans {{l.adresse}} ... </p>
+                <a class="read-more" href="{{ path('best_trip_wee_go_infoLieu',{id:l.id,statut:l.statut})}}" >Plus d'informations <i class="fa fa-arrow-right"></i></a>
+            </div>
+
+
+
+
+
+        {% endfor %} 
+
+    </div>
+
+
+
+
+
+{% endblock %}

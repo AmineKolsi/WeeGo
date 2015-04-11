@@ -1,0 +1,32 @@
+{# empty Twig template #}
+{% extends 'BestTripWeeGoBundle::layout.html.twig' %}
+{% block titre_page %}Guide de: {{guide.titre}}{% endblock %}
+{% block titre_rubrique %}Guide de: {{guide.titre}}{% endblock %}
+{% block titre_rubrique2 %}Guide de: {{guide.titre}}{% endblock %}
+{% block main_content %}
+<h2 style="text-align: center;">{{guide.titre}}</h2>
+<p style="font: 1em/1.5em bold italic small-caps Arial; margin-bottom: 20px; text-align: justify;">{{guide.texte}}</p>
+
+<h3><b>Dernières news</b></h3>
+{%for c in contribution %}
+<div><h3></h3>
+    <p></p>
+</div>
+
+<div class="accordion-box">
+
+<div class="accord-elem active">
+<div class="accord-title">
+    <h5><i class="fa fa-comment"></i><b>{{c.titre}}</b></h5>
+<a class="accord-link" href="#"></a>
+</div>
+<div class="accord-content">
+<span class="image-content"><i class="fa fa-plane"></i></span>
+
+<p>{{c.texte}}</p>
+
+</div>
+</div>							
+</div>
+{% endfor %}
+{% endblock %}

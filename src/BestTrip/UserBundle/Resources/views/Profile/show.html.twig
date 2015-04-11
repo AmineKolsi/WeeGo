@@ -1,0 +1,39 @@
+
+
+
+
+{% extends 'BestTripWeeGoBundle::layout_sans_sidebar.html.twig' %}
+
+
+{% block main_content %}
+
+
+<div class="container">
+    <div class="col-md-9">
+        <div class="row">
+
+
+
+                                  {% include "FOSUserBundle:Profile:show_content.html.twig" %}  
+
+
+
+
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="col-md-12 sidebar" style="padding: 0;">
+                           {% include "BestTripWeeGoBundle:Utilisateur:UtilisateurConnecteMenu.html.twig" %}
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+{% endblock %}
+
+
+

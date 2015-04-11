@@ -1,0 +1,31 @@
+{% extends 'BestTripWeeGoBundle::index.html.twig' %}
+{% trans_default_domain 'FOSUserBundle' %}
+{% block main_content %}
+
+
+
+{% if error %}
+    <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{% endif %}
+    
+<form action="{{ path("fos_user_security_check") }}" method="post" class="formulaire_login">
+    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+
+    <label for="username" style="display: none;">{{ 'security.login.username'|trans }}</label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" placeholder="Nom d'utilisateur" required="required" />
+
+    <label for="password" style="display: none;">{{ 'security.login.password'|trans }}</label>
+    <input type="password" id="password" name="_password" required="required" placeholder="Mot de passe"/>
+
+    <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+    <label for="remember_me">{{ 'security.login.remember_me'|trans }}</label>
+
+    <input type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}"   />
+</form>
+    <div class="span4">  
+            <a href="{{ path('fos_user_registration_register') }}" >S'inscrire</a>
+                </div>
+    <div class="span10">
+                    <a href="{{ path('fos_user_resetting_request') }}">Mot de passe perdu ?</a>
+                </div>
+{% endblock  %}

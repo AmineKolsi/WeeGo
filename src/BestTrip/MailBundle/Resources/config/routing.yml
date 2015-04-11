@@ -1,0 +1,38 @@
+best_trip_mail_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: BestTripMailBundle:Default:index }
+    
+my_app_mail_succ:
+    path: /succ
+    defaults: { _controller: BestTripMailBundle:Newsletter:index }
+
+my_app_mail_form:
+    path: /mail
+    defaults: { _controller: BestTripMailBundle:Newsletter:new }
+
+my_app_mail_sendpage:
+    path: /sendmail
+    defaults: { _controller: BestTripMailBundle:Newsletter:sendMail }
+
+
+
+wee_go_mail_succ:
+    path:     /succ2
+    defaults: { _controller: BestTripMailBundle:MailContact:index }
+wee_go_mail_form_contact:
+    path:     /contact
+    defaults: { _controller: BestTripMailBundle:MailContact:new }
+wee_go_mail_sendpage:
+    path:  /sendmail2
+    defaults: { _controller: BestTripMailBundle:MailContact:sendMail } 
+    
+    
+wee_go_mail_succ_front_office:
+    path:     /succ3
+    defaults: { _controller: BestTripMailBundle:MailContactFrontOffice:index }
+wee_go_mail_form_contact_front_office:
+    path:     /contactFrontOffice
+    defaults: { _controller: BestTripMailBundle:MailContactFrontOffice:new }
+wee_go_mail_sendpage_front_office:
+    path:  /sendmail3
+    defaults: { _controller: BestTripMailBundle:MailContactFrontOffice:sendMail } 

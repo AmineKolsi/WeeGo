@@ -1,0 +1,56 @@
+{% extends 'BestTripWeeGoBundle::layout.html.twig' %}
+{% block include_head %}<link rel="stylesheet" type="text/css" href="{{ asset('css/owl.carousel.css') }}" media="screen">{% endblock %}
+{% block include_foot %} <script type="text/javascript" src="{{ asset('js/owl.carousel.min.js') }}"></script>{% endblock %} 
+{% block titre_page %}Experience{% endblock %}
+{% block titre_rubrique %}Modifier Experience{% endblock %}
+
+
+{% block main_content  %}
+<form method="POST" class="formulaire">
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            {{form_label(form.titre)}}               
+            {{ form_widget (form.titre, {'attr': {'placeholder': 'Titre'}}) }}
+        </div>
+        <div class="col-md-6">
+            {{form_label(form.date_debut)}}               
+            {{ form_widget (form.date_debut) }}
+        </div>
+    </div>
+    <div class="row">
+         <div class="col-md-6">
+            {{form_label(form.date_fin)}}               
+            {{ form_widget (form.date_fin) }}
+        </div>
+         
+        <div class="col-md-6">
+            {{form_label(form.impression)}}               
+            {{ form_widget (form.impression) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            {{form_label(form.texte)}}               
+            {{ form_widget (form.texte) }}
+        </div>
+        <div class="col-md-6">
+            {{form_label(form.idLieu)}}               
+            {{ form_widget (form.idLieu) }}
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-md-6">
+            {{form_label(form.image)}}               
+            {{ form_widget (form.image) }}
+        </div>
+    </div>
+    
+    
+    <div class="row">
+        <input type="submit" value="Modifier"/>
+    </div>
+</div>
+</form>
+{% endblock %}   
